@@ -6,7 +6,7 @@ export class AppService {
     return 'Hello World!';
   }
 
-  logintUser(data) {
+  loginUser(data) {
     return data;
   }
 }
