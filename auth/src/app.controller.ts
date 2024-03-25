@@ -13,6 +13,9 @@ export class AppController {
 
   @MessagePattern('login_requiest')
   loginUser(data: any) {
-    return this.appService.logintUser(data.value);
+    console.log('===================================')
+    console.log(data)
+    console.log('===================================')
+    return this.appService.loginUser(data);
   }
 }
