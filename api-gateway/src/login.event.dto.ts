@@ -6,8 +6,8 @@ export class LoginEvent {
 
   toString() {
     return JSON.stringify({
-      orderId: this.email,
-      userId: this.password,
+      email: this.email,
+      password: this.password,
     });
   }
 }
