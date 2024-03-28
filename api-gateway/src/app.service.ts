@@ -3,11 +3,13 @@ import { ClientKafka } from '@nestjs/microservices';
 import { LoginEvent } from './login.event.dto';
 import { Observable } from 'rxjs';
 import { Consumer, Producer } from 'kafkajs';
+import { AuthService } from './auth/auth.service';
 
 @Injectable()
 export class AppService {
   constructor(
     @Inject('AUTH_SERVICE') private readonly authClient: ClientKafka,
+    private readonly authService: AuthService,
   ) {}
 
   private kafkaProducer: Producer;
