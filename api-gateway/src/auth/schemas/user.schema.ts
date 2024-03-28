@@ -6,4 +6,4 @@ const userSchema = new Schema({
   password: String,
 });
 
-module.exports = userSchema;
+export default userSchema;
