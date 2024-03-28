@@ -12,4 +12,8 @@ export class UsersService {
     const createdUser = await this.userModel.create(createUserDto);
     return createdUser;
   }
+
+  async findAll() {
+    return this.userModel.find().exec();
+  }
 }
