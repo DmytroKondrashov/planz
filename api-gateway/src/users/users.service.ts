@@ -3,6 +3,7 @@ import { CreateUserDto } from './dto/create.user.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from './chemas/user.schema';
 import { Model } from 'mongoose';
+import { UpdateUserDto } from './dto/update.user.dto';
 
 @Injectable()
 export class UsersService {
@@ -24,5 +25,14 @@ export class UsersService {
   async delete(id: string) {
     const deletedUser = await this.userModel.deleteOne({ _id: id }).exec();
     return deletedUser;
+  }
+
+  async update(body: UpdateUserDto, id: string) {
+    try {
+      await this.userModel.updateOne({ _id: id }, body).exec();
+      return this.findOne(id);
+    } catch (error) {
+      return 'Update did not succeed!';
+    }
   }
 }

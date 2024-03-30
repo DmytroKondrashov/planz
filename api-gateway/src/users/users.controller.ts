@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { CreateUserDto } from './dto/create.user.dto';
 import { UsersService } from './users.service';
 import { User } from './chemas/user.schema';
+import { UpdateUserDto } from './dto/update.user.dto';
 
 @Controller('users')
 export class UsersController {
@@ -25,5 +26,10 @@ export class UsersController {
   @Delete(':id')
   async delete(@Param('id') id: string) {
     return this.usersService.delete(id);
+  }
+
+  @Post(':id')
+  async edit(@Body() body: UpdateUserDto, @Param('id') id: string) {
+    return this.usersService.update(body, id);
   }
 }
