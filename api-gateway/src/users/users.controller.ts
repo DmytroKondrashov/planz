@@ -1,9 +1,18 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { CreateUserDto } from '../common/dto/create.user.dto';
 import { UsersService } from './users.service';
 import { User } from '../common/schemas/user.schema';
 import { UpdateUserDto } from './dto/update.user.dto';
 import { SearchUserDto } from './dto/search.user.dto';
+import { AuthGuard } from 'src/common/guards/auth.guard';
 
 @Controller('users')
 export class UsersController {
@@ -14,6 +23,7 @@ export class UsersController {
     return this.usersService.create(createUserDto);
   }
 
+  @UseGuards(AuthGuard)
   @Get()
   async findAll(@Body() body: SearchUserDto): Promise<User[]> {
     return this.usersService.findAll(body);
