@@ -4,6 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { User } from '../common/schemas/user.schema';
 import { Model } from 'mongoose';
 import { UpdateUserDto } from './dto/update.user.dto';
+import { SearchUserDto } from './dto/search.user.dto';
 
 @Injectable()
 export class UsersService {
@@ -14,8 +15,8 @@ export class UsersService {
     return createdUser;
   }
 
-  async findAll() {
-    return this.userModel.find().exec();
+  async findAll(body: SearchUserDto) {
+    return this.userModel.find(body).exec();
   }
 
   async findOne(id: string) {

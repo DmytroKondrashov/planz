@@ -3,6 +3,7 @@ import { CreateUserDto } from '../common/dto/create.user.dto';
 import { UsersService } from './users.service';
 import { User } from '../common/schemas/user.schema';
 import { UpdateUserDto } from './dto/update.user.dto';
+import { SearchUserDto } from './dto/search.user.dto';
 
 @Controller('users')
 export class UsersController {
@@ -14,8 +15,8 @@ export class UsersController {
   }
 
   @Get()
-  async findAll(): Promise<User[]> {
-    return this.usersService.findAll();
+  async findAll(@Body() body: SearchUserDto): Promise<User[]> {
+    return this.usersService.findAll(body);
   }
 
   @Get(':id')
