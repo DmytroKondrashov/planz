@@ -20,7 +20,7 @@ export class AuthService {
     const payload = { _id: user._id, email: user.email };
     return {
       jwtToken: await this.jwtService.signAsync(payload, {
-        secret: 'testSecret',
+        secret: process.env.JWT_SECRET,
       }),
     };
   }
