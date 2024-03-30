@@ -14,4 +14,9 @@ export class AuthController {
   async signIn(@Body() body: CreateUserDto) {
     return this.authService.signIn(body);
   }
+
+  @Post('/signup')
+  async signUp(@Body() body: CreateUserDto) {
+    return this.authService.signUp(body);
+  }
 }

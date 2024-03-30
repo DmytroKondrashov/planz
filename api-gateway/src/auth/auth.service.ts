@@ -24,4 +24,8 @@ export class AuthService {
       }),
     };
   }
+
+  async signUp(body: CreateUserDto) {
+    return this.userService.create(body);
+  }
 }
