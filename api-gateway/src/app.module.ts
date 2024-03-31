@@ -9,6 +9,7 @@ import { AuthService } from './auth/auth.service';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from './users/users.service';
 import { User, UserSchema } from './common/schemas/user.schema';
+import { ListsModule } from './lists/lists.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { User, UserSchema } from './common/schemas/user.schema';
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
     AuthModule,
     UsersModule,
+    ListsModule,
   ],
   controllers: [AppController],
   providers: [AppService, AuthService, JwtService, UsersService],
