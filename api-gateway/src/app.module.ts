@@ -10,7 +10,7 @@ import { JwtService } from '@nestjs/jwt';
 import { UsersService } from './users/users.service';
 import { User, UserSchema } from './common/schemas/user.schema';
 import { ListsModule } from './lists/lists.module';
-import { MongooseModule } from './mongoose/mongoose.module';
+import { CommonService } from './common/common.service';
 
 @Module({
   imports: [
@@ -37,6 +37,6 @@ import { MongooseModule } from './mongoose/mongoose.module';
     MongooseModule,
   ],
   controllers: [AppController],
-  providers: [AppService, AuthService, JwtService, UsersService],
+  providers: [AppService, AuthService, JwtService, UsersService, CommonService],
 })
 export class AppModule {}
