@@ -8,10 +8,12 @@ import { CommonService } from 'src/common/common.service';
 export class ListsService {
   constructor(
     @InjectModel(List.name) private readonly listModel: Model<List>,
-    private readonly commonService: CommonService
+    private readonly commonService: CommonService,
   ) {}
 
   async getUsersLists(token: string) {
-    return this.listModel.find({ _id:  }).exec();
+    return this.listModel
+      .find({ _id: this.commonService.getIdFromToken(token) })
+      .exec();
   }
 }
