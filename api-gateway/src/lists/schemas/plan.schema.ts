@@ -1,4 +1,4 @@
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ObjectId } from 'mongoose';
 
 @Schema()
@@ -9,3 +9,5 @@ export class List {
   @Prop()
   userId: ObjectId;
 }
+
+export const ListSchema = SchemaFactory.createForClass(List);
