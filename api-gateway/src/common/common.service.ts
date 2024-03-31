@@ -1,4 +1,12 @@
 import { Injectable } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
-export class CommonService {}
+export class CommonService {
+  constructor(private readonly jwtService: JwtService) {}
+
+  getIdFromToken(token: string) {
+    const decoded = this.jwtService.verify(token);
+    return decoded._id;
+  }
+}
