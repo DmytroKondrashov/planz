@@ -10,6 +10,7 @@ import { JwtService } from '@nestjs/jwt';
 import { UsersService } from './users/users.service';
 import { User, UserSchema } from './common/schemas/user.schema';
 import { ListsModule } from './lists/lists.module';
+import { MongooseModule } from './mongoose/mongoose.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { ListsModule } from './lists/lists.module';
     AuthModule,
     UsersModule,
     ListsModule,
+    MongooseModule,
   ],
   controllers: [AppController],
   providers: [AppService, AuthService, JwtService, UsersService],
