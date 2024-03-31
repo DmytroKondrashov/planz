@@ -11,6 +11,7 @@ import { UsersService } from './users/users.service';
 import { User, UserSchema } from './common/schemas/user.schema';
 import { ListsModule } from './lists/lists.module';
 import { CommonService } from './common/common.service';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { CommonService } from './common/common.service';
     UsersModule,
     ListsModule,
     MongooseModule,
+    CommonModule,
   ],
   controllers: [AppController],
   providers: [AppService, AuthService, JwtService, UsersService, CommonService],
