@@ -27,6 +27,7 @@ export class ListsService {
     return this.listModel.create({
       name: body.name,
       userId,
+      plans: [],
     });
   }
 }

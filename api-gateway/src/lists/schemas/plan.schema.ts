@@ -7,6 +7,9 @@ export class List {
 
   @Prop()
   userId: string;
+
+  @Prop()
+  plans: [];
 }
 
 export const ListSchema = SchemaFactory.createForClass(List);
