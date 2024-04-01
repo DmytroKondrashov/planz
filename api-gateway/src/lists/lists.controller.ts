@@ -12,6 +12,7 @@ import { Token } from 'src/common/decorators/token.decorator';
 import { AuthGuard } from 'src/common/guards/auth.guard';
 import { CreateListDto } from './dto/create.list.dto';
 import { EditListDto } from './dto/edit.list.dto';
+import { ListOwnershipGuard } from './guards/list.ownership.guard';
 
 @Controller('lists')
 export class ListsController {
@@ -36,13 +37,13 @@ export class ListsController {
   }
 
   @Post(':id')
-  @UseGuards(AuthGuard)
+  @UseGuards(AuthGuard, ListOwnershipGuard)
   editList(@Body() body: EditListDto, @Param('id') id: string) {
     return this.listsService.editList(body, id);
   }
 
   @Delete(':id')
-  @UseGuards(AuthGuard)
+  @UseGuards(AuthGuard, ListOwnershipGuard)
   deleteList(@Param('id') id: string) {
     return this.listsService.deleteList(id);
   }
