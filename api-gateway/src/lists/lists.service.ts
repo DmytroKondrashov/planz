@@ -16,4 +16,8 @@ export class ListsService {
       .find({ _id: this.commonService.getIdFromToken(token) })
       .exec();
   }
+
+  async getList(token: string, id: string) {
+    return this.listModel.find({ _id: id }).exec();
+  }
 }
