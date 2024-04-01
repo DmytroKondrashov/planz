@@ -26,6 +26,9 @@ export class AuthService {
   }
 
   async signUp(body: CreateUserDto) {
-    return this.userService.create(body);
+    // TODO: remove as any here
+    const createdUser = (await this.userService.create(body)) as any;
+    delete createdUser.password;
+    return createdUser;
   }
 }
