@@ -6,7 +6,7 @@ import { Request } from 'express';
 export class CommonService {
   constructor(private readonly jwtService: JwtService) {}
 
-  getIdFromToken(token: string) {
+  getIdFromToken(token: string): string {
     const decoded = this.jwtService.verify(token);
     return decoded._id;
   }
