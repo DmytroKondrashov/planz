@@ -14,7 +14,7 @@ export class ListsService {
 
   async getUsersLists(token: string) {
     return this.listModel
-      .find({ _id: this.commonService.getIdFromToken(token) })
+      .find({ userId: this.commonService.getIdFromToken(token) })
       .exec();
   }
 
