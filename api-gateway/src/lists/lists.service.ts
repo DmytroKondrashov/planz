@@ -42,4 +42,16 @@ export class ListsService {
       );
     }
   }
+
+  async deleteList(id: string) {
+    try {
+      await this.listModel.deleteOne({ _id: id });
+      // TODO: delete all the plans that belong to this list
+      return 'List successfully deleted!';
+    } catch (error) {
+      throw new InternalServerErrorException(
+        'Something went wrong during list deletion!',
+      );
+    }
+  }
 }

@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { ListsService } from './lists.service';
 import { Token } from 'src/common/decorators/token.decorator';
 import { AuthGuard } from 'src/common/guards/auth.guard';
@@ -31,5 +39,11 @@ export class ListsController {
   @UseGuards(AuthGuard)
   editList(@Body() body: EditListDto, @Param('id') id: string) {
     return this.listsService.editList(body, id);
+  }
+
+  @Delete(':id')
+  @UseGuards(AuthGuard)
+  deleteList(@Param('id') id: string) {
+    return this.listsService.deleteList(id);
   }
 }
