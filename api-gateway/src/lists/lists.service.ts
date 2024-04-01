@@ -1,9 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { List } from './schemas/plan.schema';
 import { Model } from 'mongoose';
 import { CommonService } from 'src/common/common.service';
 import { CreateListDto } from './dto/create.list.dto';
+import { EditListDto } from './dto/edit.list.dto';
 
 @Injectable()
 export class ListsService {
@@ -29,5 +30,16 @@ export class ListsService {
       userId,
       plans: [],
     });
+  }
+
+  async editList(body: EditListDto, id: string) {
+    try {
+      await this.listModel.updateOne({ _id: id }, body);
+      return this.listModel.findById({ _id: id });
+    } catch (error) {
+      throw new InternalServerErrorException(
+        'Something went wrong during the update',
+      );
+    }
   }
 }

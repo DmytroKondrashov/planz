@@ -3,6 +3,7 @@ import { ListsService } from './lists.service';
 import { Token } from 'src/common/decorators/token.decorator';
 import { AuthGuard } from 'src/common/guards/auth.guard';
 import { CreateListDto } from './dto/create.list.dto';
+import { EditListDto } from './dto/edit.list.dto';
 
 @Controller('lists')
 export class ListsController {
@@ -24,5 +25,11 @@ export class ListsController {
   @UseGuards(AuthGuard)
   createList(@Token() token: string, @Body() body: CreateListDto) {
     return this.listsService.createList(token, body);
+  }
+
+  @Post(':id')
+  @UseGuards(AuthGuard)
+  editList(@Body() body: EditListDto, @Param('id') id: string) {
+    return this.listsService.editList(body, id);
   }
 }
