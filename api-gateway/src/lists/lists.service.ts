@@ -20,7 +20,8 @@ export class ListsService {
   }
 
   async getList(token: string, id: string) {
-    return this.listModel.find({ _id: id }).exec();
+    const res = await this.listModel.find({ _id: id }).exec();
+    return this.commonService.turnDocumentsToObjects(res, true);
   }
 
   async createList(token: string, body: CreateListDto) {

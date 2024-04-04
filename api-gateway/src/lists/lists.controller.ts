@@ -13,6 +13,7 @@ import { AuthGuard } from 'src/common/guards/auth.guard';
 import { CreateListDto } from './dto/create.list.dto';
 import { EditListDto } from './dto/edit.list.dto';
 import { ListOwnershipGuard } from './guards/list.ownership.guard';
+import { List } from './schemas/plan.schema';
 
 @Controller('lists')
 export class ListsController {
@@ -20,31 +21,34 @@ export class ListsController {
 
   @Get()
   @UseGuards(AuthGuard)
-  getUsersLists(@Token() token: string) {
+  getUsersLists(@Token() token: string): Promise<List[]> {
     return this.listsService.getUsersLists(token);
   }
 
   @Get(':id')
   @UseGuards(AuthGuard)
-  getList(@Token() token: string, @Param('id') id: string) {
+  getList(@Token() token: string, @Param('id') id: string): Promise<List> {
     return this.listsService.getList(token, id);
   }
 
   @Post()
   @UseGuards(AuthGuard)
-  createList(@Token() token: string, @Body() body: CreateListDto) {
+  createList(
+    @Token() token: string,
+    @Body() body: CreateListDto,
+  ): Promise<List> {
     return this.listsService.createList(token, body);
   }
 
   @Post(':id')
   @UseGuards(AuthGuard, ListOwnershipGuard)
-  editList(@Body() body: EditListDto, @Param('id') id: string) {
+  editList(@Body() body: EditListDto, @Param('id') id: string): Promise<List> {
     return this.listsService.editList(body, id);
   }
 
   @Delete(':id')
   @UseGuards(AuthGuard, ListOwnershipGuard)
-  deleteList(@Param('id') id: string) {
+  deleteList(@Param('id') id: string): Promise<string> {
     return this.listsService.deleteList(id);
   }
 }
