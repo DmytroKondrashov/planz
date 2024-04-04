@@ -15,4 +15,11 @@ export class CommonService {
     const [type, token] = request.headers.authorization?.split(' ') ?? [];
     return type === 'Bearer' ? token : undefined;
   }
+
+  turnDocumentsToObjects(docs, returnFirst) {
+    const objects = docs.map((doc) => {
+      return doc.toObject();
+    });
+    return returnFirst ? objects[0] : objects;
+  }
 }
