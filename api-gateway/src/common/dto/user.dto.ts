@@ -1,4 +1,5 @@
-import { IsString } from 'class-validator';
+import { IsArray, IsString } from 'class-validator';
+import { List } from 'src/lists/schemas/plan.schema';
 
 export class UserDto {
   @IsString()
@@ -9,4 +10,7 @@ export class UserDto {
 
   @IsString()
   __V: string;
+
+  @IsArray()
+  lists: List[];
 }
