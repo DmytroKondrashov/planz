@@ -7,12 +7,14 @@ import { UpdateUserDto } from './dto/update.user.dto';
 import { SearchUserDto } from './dto/search.user.dto';
 import { UserDto } from 'src/common/dto/user.dto';
 import { CommonService } from 'src/common/common.service';
+import { ListsService } from 'src/lists/lists.service';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectModel(User.name) private userModel: Model<User>,
     private readonly commonService: CommonService,
+    private readonly listsService: ListsService,
   ) {}
 
   async create(createUserDto: CreateUserDto): Promise<User> {
@@ -34,8 +36,11 @@ export class UsersService {
 
   async delete(id: string): Promise<string> {
     try {
+      const user = await this.findOne(id);
       await this.userModel.deleteOne({ _id: id }).exec();
-      // TODO: delete all the Lists that belong to this User
+      if (user.lists.length > 0) {
+        await this.listsService.deleteAllLists(user.lists);
+      }
       return 'User successfully deleted!';
     } catch (error) {
       throw new InternalServerErrorException(
