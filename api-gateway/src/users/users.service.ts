@@ -5,22 +5,31 @@ import { User } from '../common/schemas/user.schema';
 import { Model } from 'mongoose';
 import { UpdateUserDto } from './dto/update.user.dto';
 import { SearchUserDto } from './dto/search.user.dto';
+import { UserDto } from 'src/common/dto/user.dto';
+import { CommonService } from 'src/common/common.service';
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectModel(User.name) private userModel: Model<User>) {}
+  constructor(
+    @InjectModel(User.name) private userModel: Model<User>,
+    private readonly commonService: CommonService,
+  ) {}
 
   async create(createUserDto: CreateUserDto): Promise<User> {
     const createdUser = await this.userModel.create(createUserDto);
     return createdUser;
   }
 
-  async findAll(body: SearchUserDto): Promise<User[]> {
-    return this.userModel.find(body).exec();
+  async findAll(body: SearchUserDto): Promise<UserDto[]> {
+    return this.commonService.turnDocumentsToObjects(
+      this.userModel.find(body).exec(),
+      false,
+    );
   }
 
   async findOne(id: string) {
-    return this.userModel.findOne({ _id: id }).exec();
+    const res = await this.userModel.findOne({ _id: id }).exec();
+    return this.commonService.turnDocumentsToObjects(res, true);
   }
 
   async delete(id: string): Promise<string> {
@@ -35,7 +44,7 @@ export class UsersService {
     }
   }
 
-  async update(body: UpdateUserDto, id: string): Promise<User | string> {
+  async update(body: UpdateUserDto, id: string): Promise<UserDto | string> {
     try {
       await this.userModel.updateOne({ _id: id }, body).exec();
       return (await this.findOne(id)).toObject();

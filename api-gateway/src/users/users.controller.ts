@@ -13,6 +13,7 @@ import { User } from '../common/schemas/user.schema';
 import { UpdateUserDto } from './dto/update.user.dto';
 import { SearchUserDto } from './dto/search.user.dto';
 import { AuthGuard } from 'src/common/guards/auth.guard';
+import { UserDto } from 'src/common/dto/user.dto';
 
 @Controller('users')
 export class UsersController {
@@ -25,12 +26,12 @@ export class UsersController {
 
   @UseGuards(AuthGuard)
   @Get()
-  async findAll(@Body() body: SearchUserDto): Promise<User[]> {
+  async findAll(@Body() body: SearchUserDto): Promise<UserDto[]> {
     return this.usersService.findAll(body);
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string): Promise<User> {
+  async findOne(@Param('id') id: string): Promise<UserDto> {
     return this.usersService.findOne(id);
   }
 
@@ -43,7 +44,7 @@ export class UsersController {
   async edit(
     @Body() body: UpdateUserDto,
     @Param('id') id: string,
-  ): Promise<string | User> {
+  ): Promise<string | UserDto> {
     return this.usersService.update(body, id);
   }
 }

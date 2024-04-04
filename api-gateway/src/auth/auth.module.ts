@@ -5,6 +5,7 @@ import { UsersService } from 'src/users/users.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from 'src/common/schemas/user.schema';
 import { JwtService } from '@nestjs/jwt';
+import { CommonService } from 'src/common/common.service';
 
 @Module({
   imports: [
@@ -18,6 +19,6 @@ import { JwtService } from '@nestjs/jwt';
     // }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, UsersService, JwtService],
+  providers: [AuthService, UsersService, JwtService, CommonService],
 })
 export class AuthModule {}
