@@ -55,4 +55,15 @@ export class ListsService {
       );
     }
   }
+
+  async deleteAllLists(ids: string[]): Promise<string> {
+    try {
+      await this.listModel.deleteMany({ _id: { $in: ids } });
+      return 'All Lists successfully deleted!';
+    } catch (error) {
+      throw new InternalServerErrorException(
+        'Something went wrong during all Lists deletion!',
+      );
+    }
+  }
 }
