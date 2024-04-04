@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { CreateUserDto } from '../common/dto/create.user.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from '../common/schemas/user.schema';
@@ -24,14 +24,21 @@ export class UsersService {
   }
 
   async delete(id: string) {
-    const deletedUser = await this.userModel.deleteOne({ _id: id }).exec();
-    return deletedUser;
+    try {
+      await this.userModel.deleteOne({ _id: id }).exec();
+      // TODO: delete all the Lists that belong to this User
+      return 'User successfully deleted!';
+    } catch (error) {
+      throw new InternalServerErrorException(
+        'Something went wrong during User deletion!',
+      );
+    }
   }
 
   async update(body: UpdateUserDto, id: string) {
     try {
       await this.userModel.updateOne({ _id: id }, body).exec();
-      return this.findOne(id);
+      return (await this.findOne(id)).toObject();
     } catch (error) {
       return 'Update did not succeed!';
     }
