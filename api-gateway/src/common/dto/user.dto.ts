@@ -8,9 +8,6 @@ export class UserDto {
   @IsString()
   email: string;
 
-  @IsString()
-  __V: string;
-
   @IsArray()
   lists: List[];
 }
