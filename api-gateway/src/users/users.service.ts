@@ -10,12 +10,12 @@ import { SearchUserDto } from './dto/search.user.dto';
 export class UsersService {
   constructor(@InjectModel(User.name) private userModel: Model<User>) {}
 
-  async create(createUserDto: CreateUserDto) {
+  async create(createUserDto: CreateUserDto): Promise<User> {
     const createdUser = await this.userModel.create(createUserDto);
     return createdUser;
   }
 
-  async findAll(body: SearchUserDto) {
+  async findAll(body: SearchUserDto): Promise<User[]> {
     return this.userModel.find(body).exec();
   }
 
@@ -23,7 +23,7 @@ export class UsersService {
     return this.userModel.findOne({ _id: id }).exec();
   }
 
-  async delete(id: string) {
+  async delete(id: string): Promise<string> {
     try {
       await this.userModel.deleteOne({ _id: id }).exec();
       // TODO: delete all the Lists that belong to this User
@@ -35,7 +35,7 @@ export class UsersService {
     }
   }
 
-  async update(body: UpdateUserDto, id: string) {
+  async update(body: UpdateUserDto, id: string): Promise<User | string> {
     try {
       await this.userModel.updateOne({ _id: id }, body).exec();
       return (await this.findOne(id)).toObject();
