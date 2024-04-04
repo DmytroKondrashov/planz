@@ -13,18 +13,18 @@ export class ListsService {
     private readonly commonService: CommonService,
   ) {}
 
-  async getUsersLists(token: string) {
+  async getUsersLists(token: string): Promise<List[]> {
     return this.listModel
       .find({ userId: this.commonService.getIdFromToken(token) })
       .exec();
   }
 
-  async getList(token: string, id: string) {
+  async getList(token: string, id: string): Promise<List> {
     const res = await this.listModel.find({ _id: id }).exec();
     return this.commonService.turnDocumentsToObjects(res, true);
   }
 
-  async createList(token: string, body: CreateListDto) {
+  async createList(token: string, body: CreateListDto): Promise<List> {
     const userId = this.commonService.getIdFromToken(token);
     return this.listModel.create({
       name: body.name,
@@ -33,7 +33,7 @@ export class ListsService {
     });
   }
 
-  async editList(body: EditListDto, id: string) {
+  async editList(body: EditListDto, id: string): Promise<List> {
     try {
       await this.listModel.updateOne({ _id: id }, body);
       return this.listModel.findById({ _id: id });
@@ -44,7 +44,7 @@ export class ListsService {
     }
   }
 
-  async deleteList(id: string) {
+  async deleteList(id: string): Promise<string> {
     try {
       await this.listModel.deleteOne({ _id: id });
       // TODO: delete all the plans that belong to this list
