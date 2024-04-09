@@ -14,6 +14,7 @@ import { CommonService } from './common/common.service';
 import { CommonModule } from './common/common.module';
 import { ListsService } from './lists/lists.service';
 import { List, ListSchema } from './lists/schemas/list.schema';
+import { PlansModule } from './plans/plans.module';
 
 @Module({
   imports: [
@@ -40,6 +41,7 @@ import { List, ListSchema } from './lists/schemas/list.schema';
     ListsModule,
     MongooseModule,
     CommonModule,
+    PlansModule,
   ],
   controllers: [AppController],
   providers: [
