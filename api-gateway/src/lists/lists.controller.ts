@@ -13,7 +13,7 @@ import { AuthGuard } from 'src/common/guards/auth.guard';
 import { CreateListDto } from './dto/create.list.dto';
 import { EditListDto } from './dto/edit.list.dto';
 import { ListOwnershipGuard } from './guards/list.ownership.guard';
-import { List } from './schemas/plan.schema';
+import { List } from './schemas/list.schema';
 
 @Controller('lists')
 export class ListsController {

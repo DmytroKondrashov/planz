@@ -1,6 +1,6 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { List } from './schemas/plan.schema';
+import { List } from './schemas/list.schema';
 import { Model } from 'mongoose';
 import { CommonService } from 'src/common/common.service';
 import { CreateListDto } from './dto/create.list.dto';
