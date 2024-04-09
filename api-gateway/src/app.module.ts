@@ -12,6 +12,8 @@ import { User, UserSchema } from './common/schemas/user.schema';
 import { ListsModule } from './lists/lists.module';
 import { CommonService } from './common/common.service';
 import { CommonModule } from './common/common.module';
+import { ListsService } from './lists/lists.service';
+import { List, ListSchema } from './lists/schemas/list.schema';
 
 @Module({
   imports: [
@@ -32,6 +34,7 @@ import { CommonModule } from './common/common.module';
     ]),
     MongooseModule.forRoot('mongodb://localhost:27017/test'),
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
+    MongooseModule.forFeature([{ name: List.name, schema: ListSchema }]),
     AuthModule,
     UsersModule,
     ListsModule,
@@ -39,6 +42,13 @@ import { CommonModule } from './common/common.module';
     CommonModule,
   ],
   controllers: [AppController],
-  providers: [AppService, AuthService, JwtService, UsersService, CommonService],
+  providers: [
+    AppService,
+    AuthService,
+    JwtService,
+    UsersService,
+    CommonService,
+    ListsService,
+  ],
 })
 export class AppModule {}
