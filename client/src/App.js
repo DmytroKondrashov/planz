@@ -1,13 +1,13 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/header';
-import LogInForm from './components/logInForm';
+import Page from './components/page';
 
 function App() {
   return (
     <>
       <Header />
-      <LogInForm />
+      <Page />
     </>
   );
 }
