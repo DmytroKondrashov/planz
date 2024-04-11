@@ -23,10 +23,8 @@ export class UsersService {
   }
 
   async findAll(body: SearchUserDto): Promise<UserDto[]> {
-    return this.commonService.turnDocumentsToObjects(
-      this.userModel.find(body).exec(),
-      false,
-    );
+    const result = await this.userModel.find(body).exec();
+    return this.commonService.turnDocumentsToObjects(result, false);
   }
 
   async findOne(id: string) {
