@@ -2,7 +2,7 @@ import React from 'react';
 import LogInForm from './logInForm';
 
 export default class Page extends React.Component{
-  addAssociation = (associationType, associationAttributes = {}) => {
+  ginUp = (associationType, associationAttributes = {}) => {
     const { intakeData } = this.state;
 
     const postData = {
@@ -21,10 +21,6 @@ export default class Page extends React.Component{
     }).then(res => res.json())
       .then(
         (result) => {
-          console.log('============================')
-          console.log(result)
-          console.log(associationAttributes)
-          console.log('============================')
           const updatedAssoc = {
             id: result.assoc_id,
             ...associationAttributes
@@ -52,7 +48,9 @@ export default class Page extends React.Component{
   }
   render() {
     return(
-      < LogInForm />
+      < LogInForm 
+        signUp = { this.signUp }
+      />
     )
   }
 };
