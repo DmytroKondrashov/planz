@@ -41,15 +41,15 @@ function LogInForm() {
   return(
     <>
       <form>
-        <div class="mb-3">
-          <label for="email1" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="email" aria-describedby="emailHelp"  value={formData.email} onChange={handleChange}/>
+        <div className="mb-3">
+          <label for="email1" className="form-label">Email address</label>
+          <input type="email" className="form-control" id="email" aria-describedby="emailHelp"  value={formData.email} onChange={handleChange}/>
         </div>
-        <div class="mb-3">
-          <label for="password" class="form-label">Password</label>
-          <input type="password" class="form-control" id="password" value={formData.password} onChange={handleChange}/>
+        <div className="mb-3">
+          <label for="password" className="form-label">Password</label>
+          <input type="password" className="form-control" id="password" value={formData.password} onChange={handleChange}/>
         </div>
-        <button type="submit" class="btn btn-primary" onClick={handleSubmit}>Submit</button>
+        <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
       </form>
     </>
   )
