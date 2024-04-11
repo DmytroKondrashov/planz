@@ -42,11 +42,11 @@ function LogInForm() {
     <>
       <form>
         <div className="mb-3">
-          <label for="email1" className="form-label">Email address</label>
+          <label htmlFor="email1" className="form-label">Email address</label>
           <input type="email" className="form-control" id="email" aria-describedby="emailHelp"  value={formData.email} onChange={handleChange}/>
         </div>
         <div className="mb-3">
-          <label for="password" className="form-label">Password</label>
+          <label htmlFor="password" className="form-label">Password</label>
           <input type="password" className="form-control" id="password" value={formData.password} onChange={handleChange}/>
         </div>
         <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
