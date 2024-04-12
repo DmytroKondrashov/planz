@@ -1,5 +1,5 @@
 import React from 'react';
-import LogInForm from './LogInForm';
+import LogInForm from './SignUpForm';
 
 export default class Page extends React.Component{
   ginUp = (associationType, associationAttributes = {}) => {
