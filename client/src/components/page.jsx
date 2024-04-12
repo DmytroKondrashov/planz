@@ -1,5 +1,5 @@
 import React from 'react';
-import LogInForm from './logInForm';
+import LogInForm from './LogInForm';
 
 export default class Page extends React.Component{
   ginUp = (associationType, associationAttributes = {}) => {
