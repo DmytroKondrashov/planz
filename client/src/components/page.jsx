@@ -1,5 +1,5 @@
 import React from 'react';
-import LogInForm from './SignUpForm';
+import SignUpForm from './SignUpForm';
 
 export default class Page extends React.Component{
   ginUp = (associationType, associationAttributes = {}) => {
@@ -48,7 +48,7 @@ export default class Page extends React.Component{
   }
   render() {
     return(
-      < LogInForm 
+      < SignUpForm 
         signUp = { this.signUp }
       />
     )
