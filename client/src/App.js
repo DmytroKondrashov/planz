@@ -1,14 +1,16 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import RouterProvider from 'react-router-dom'
 import Header from './components/Header';
 import Page from './components/Page';
 
 function App() {
   return (
-    <>
-      <Header />
-      <Page />
-    </>
+    // <>
+    //   <Header />
+    //   <Page />
+    // </>
+    <RouterProvider router={routes} />
   );
 }
 
