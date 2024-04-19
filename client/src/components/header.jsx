@@ -6,6 +6,10 @@ import { useAuth } from '../hooks/AuthProvider';
 function Header() {
   const { token, logOut } = useAuth();
 
+  const handleLogOut = () => {
+    logOut();
+  };
+
   return (
     <Navbar bg="dark" variant="dark" className='w-100'>
       <Navbar.Brand href="/">PLANZ</Navbar.Brand>
@@ -16,7 +20,7 @@ function Header() {
           </div>
           <div className='d-flex flex-row'>
             {token ? (
-              <Nav.Link href="#pricing" onClick={logOut()}>Log Out</Nav.Link>
+              <Nav.Link href="#pricing" onClick={handleLogOut()}>Log Out</Nav.Link>
             ) : (
               <>
                 <Nav.Link href="#pricing">Sign In</Nav.Link>
