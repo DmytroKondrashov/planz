@@ -1,11 +1,14 @@
 import Header from './Header';
 import { Outlet } from 'react-router-dom';
+import AuthProvider from '../AuthProvider';
 
 function Layout() {
   return(
     <>
-      <Header />
-      <Outlet />
+      <AuthProvider>
+        <Header />
+        <Outlet />
+      </AuthProvider>
     </>
   )
 }
