@@ -2,7 +2,6 @@ import Header from './Header';
 import { Outlet } from 'react-router-dom';
 import AuthProvider from '../hooks/AuthProvider';
 import { useAuth } from '../hooks/AuthProvider';
-import SignUpForm from './SignUpForm';
 import SignUpOrLogIn from './SignUpOrLogIn';
 
 function Layout() {
