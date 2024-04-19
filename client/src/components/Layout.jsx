@@ -1,6 +1,6 @@
 import Header from './Header';
 import { Outlet } from 'react-router-dom';
-import AuthProvider from '../AuthProvider';
+import AuthProvider from '../hooks/AuthProvider';
 
 function Layout() {
   return(
