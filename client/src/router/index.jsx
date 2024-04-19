@@ -3,10 +3,11 @@ import { createBrowserRouter } from "react-router-dom";
 import Layout from "../components/Layout";
 import Landing from "../components/Landing";
 import SignUpForm from "../components/SignUpForm";
+import AuthProvider from "../hooks/AuthProvider";
 
 export const routes = createBrowserRouter([
   {
-    element: <Layout/>,
+    element: <AuthProvider><Layout/></AuthProvider>,
     children: [
       {
         path: '/',

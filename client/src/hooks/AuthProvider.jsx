@@ -18,13 +18,13 @@ const AuthProvider = ({children}) => {
         body: JSON.stringify(data),
       });
       const res = await response.json();
-      console.log(res)
       if (res.data) {
         // // TODO: see if we really need that user and if we need to return it from the API
         // setUser(res.data.user);
         setToken(res.jwtToken);
         localStorage.setItem("site", res.jwtToken);
         navigate("/");
+        return
       }
     } catch(error) {
       console.error(error);
@@ -39,8 +39,9 @@ const AuthProvider = ({children}) => {
   }
 
   // return  <AuthContext.Provider value={{ token, user, loginAction, logOut }}>
-  return  <AuthContext.Provider value={{ token, loginAction, logOut }}>
-    {children}</AuthContext.Provider>;
+  return ( <AuthContext.Provider value={{ token, loginAction, logOut }}>
+          {children}
+          </AuthContext.Provider>)
 }
 
 export default AuthProvider;
