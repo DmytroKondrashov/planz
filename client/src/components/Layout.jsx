@@ -5,22 +5,17 @@ import { useAuth } from '../hooks/AuthProvider';
 import SignUpOrLogIn from './SignUpOrLogIn';
 
 function Layout() {
-  const user = useAuth();
+  const token = useAuth();
 
   return(
     <>
       <AuthProvider>
+        <Header />
         {
-          user?.token ? (
-            <>
-            <Header />
-            <Outlet />
-            </>
+          token ? (
+          <Outlet />
           ) : (
-            <>
-              <Header />
-              <SignUpOrLogIn/>
-            </>
+            <SignUpOrLogIn/>
           ) 
         }
       </AuthProvider>
