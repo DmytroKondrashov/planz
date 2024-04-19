@@ -4,7 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import { useAuth } from '../hooks/AuthProvider';
 
 function Header() {
-  const { token } = useAuth();
+  const { token, logOut } = useAuth();
 
   return (
     <Navbar bg="dark" variant="dark" className='w-100'>
@@ -16,7 +16,7 @@ function Header() {
           </div>
           <div className='d-flex flex-row'>
             {token ? (
-              <Nav.Link href="#pricing">Log Out</Nav.Link>
+              <Nav.Link href="#pricing" onClick={logOut()}>Log Out</Nav.Link>
             ) : (
               <>
                 <Nav.Link href="#pricing">Sign In</Nav.Link>
