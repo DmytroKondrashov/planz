@@ -1,10 +1,13 @@
 import { useState } from "react"
+import { useAuth } from "../hooks/AuthProvider";
 
 function SignInForm() {
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   })
+
+  const auth = useAuth();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,20 +21,12 @@ function SignInForm() {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3001/auth/signin', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        data: JSON.stringify(formData),
-      })
-
-      console.log(await response.json())
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok!')
+      if (formData.email !== '' && formData.password !== '') {
+        auth.loginAction(formData);
+        return;
+      } else {
+        alert("pleae provide a email and password!")
       }
-
     } catch (err) {
       console.error(err);
     } 
