@@ -18,7 +18,7 @@ const AuthProvider = ({children}) => {
         body: JSON.stringify(data),
       });
       const res = await response.json();
-      if (res.data) {
+      if (res.jwtToken) {
         // // TODO: see if we really need that user and if we need to return it from the API
         // setUser(res.data.user);
         setToken(res.jwtToken);
