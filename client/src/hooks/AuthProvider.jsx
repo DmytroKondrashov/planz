@@ -19,8 +19,6 @@ const AuthProvider = ({children}) => {
       });
       const res = await response.json();
       if (res.jwtToken) {
-        // // TODO: see if we really need that user and if we need to return it from the API
-        // setUser(res.data.user);
         setToken(res.jwtToken);
         localStorage.setItem("site", res.jwtToken);
         navigate("/");
@@ -32,7 +30,6 @@ const AuthProvider = ({children}) => {
   }
 
   const logOut = () => {
-    // setUser(null);
     setToken("");
     localStorage.removeItem("site");
     navigate('/');
