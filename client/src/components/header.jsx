@@ -19,6 +19,7 @@ function Header() {
             <Nav.Link href="#lists">Lists</Nav.Link>
           </div>
           <div className='d-flex flex-row'>
+            {/* TODO: find the way to handle it using the context, simply token ? () : () will not work */}
             {token ? (
               <Nav.Link href="#pricing" onClick={handleLogOut()}>Log Out</Nav.Link>
             ) : (
