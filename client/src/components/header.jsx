@@ -5,6 +5,7 @@ import { useAuth } from '../hooks/AuthProvider';
 
 function Header() {
   const { token, logOut } = useAuth();
+  console.log(token)
 
   const handleLogOut = () => {
     logOut();
@@ -20,14 +21,15 @@ function Header() {
           </div>
           <div className='d-flex flex-row'>
             {/* TODO: find the way to handle it using the context, simply token ? () : () will not work */}
-            {token ? (
+            {/* {token ? (
               <Nav.Link href="#pricing" onClick={handleLogOut()}>Log Out</Nav.Link>
             ) : (
               <>
                 <Nav.Link href="#pricing">Sign In</Nav.Link>
                 <Nav.Link href="/signup">Sign Up</Nav.Link>
               </>
-            )}
+            )} */}
+              <Nav.Link href="#pricing" onClick={() => handleLogOut()}>Log Out</Nav.Link>
           </div>
         </div>
       </Nav>
