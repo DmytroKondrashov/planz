@@ -2,6 +2,7 @@ import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "../components/Layout";
 import Landing from "../components/Landing";
+import Lists from "../components/Lists";
 import SignUpForm from "../components/SignUpForm";
 import AuthProvider from "../hooks/AuthProvider";
 
@@ -16,6 +17,10 @@ export const routes = createBrowserRouter([
       {
         path: '/signup',
         element: <SignUpForm/>
+      },
+      {
+        path: '/lists',
+        element: <Lists/>
       }
     ],
   }
