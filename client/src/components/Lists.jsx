@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-async function Lists() {
+function Lists() {
   const [lists, setLists] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fecthData = async () => {
+    const fetchData = async () => {
       try {
-        const user = localStorage.getItem("site");
-        const response =  await fetch('http://localhost:3001/lists', {
+        const user = localStorage.getItem('site');
+        const response = await fetch('http://localhost:3001/lists', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -20,7 +20,7 @@ async function Lists() {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        
+
         const data = await response.json();
         setLists(data);
       } catch (error) {
@@ -28,10 +28,10 @@ async function Lists() {
       } finally {
         setLoading(false);
       }
-    }
+    };
 
-    fecthData();
-  }, [])
+    fetchData();
+  }, []);
 
   if (loading) {
     return <div>Loading...</div>;
