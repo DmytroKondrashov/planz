@@ -34,8 +34,6 @@ function SignUpForm() {
         if (!response.ok) {
           throw new Error('Network response was not ok!')
         }
-  
-        const data = await response.json();
         navigate('/lists');
       } else {
         throw new Error('Password is not confirmed!');
