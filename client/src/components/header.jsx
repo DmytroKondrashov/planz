@@ -5,7 +5,6 @@ import { useAuth } from '../hooks/AuthProvider';
 
 function Header() {
   const { token, logOut } = useAuth();
-  console.log(token)
 
   const handleLogOut = () => {
     logOut();
