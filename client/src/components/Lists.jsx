@@ -13,7 +13,7 @@ function Lists() {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'Authorisation': `Bearer ${user}`
+            'authorization': `Bearer ${user}`
           },
         });
 
