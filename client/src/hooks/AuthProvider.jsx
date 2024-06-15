@@ -20,7 +20,7 @@ const AuthProvider = ({children}) => {
       if (res.jwtToken) {
         setToken(res.jwtToken);
         localStorage.setItem("site", res.jwtToken);
-        navigate("/");
+        navigate("/lists");
         return
       }
     } catch(error) {

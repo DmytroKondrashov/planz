@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function SignUpForm() {
+  const navigate = useNavigate();
+  
   const [ formData, setFormData ] = useState({
     email: '',
     password: '',
@@ -33,7 +36,7 @@ function SignUpForm() {
         }
   
         const data = await response.json();
-        console.log(data);
+        navigate('/lists');
       } else {
         throw new Error('Password is not confirmed!');
       }
