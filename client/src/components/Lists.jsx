@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Lists() {
   const [lists, setLists] = useState(null);
@@ -95,7 +96,7 @@ function Lists() {
         </>)}
         <ul className='mt-5'>
           {lists.map(list => (
-            <li className='text-center' key={list.id}>{list.name}</li>
+            <li className='text-center' key={list.id}><Link to={`/lists/${list.id}`}>{list.name}</Link></li>
           ))}
         </ul>
       </div> 

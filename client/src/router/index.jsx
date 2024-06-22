@@ -5,6 +5,7 @@ import Landing from "../components/Landing";
 import Lists from "../components/Lists";
 import SignUpForm from "../components/SignUpForm";
 import AuthProvider from "../hooks/AuthProvider";
+import List from "../components/List";
 
 export const routes = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ export const routes = createBrowserRouter([
       {
         path: '/lists',
         element: <Lists/>
+      },
+      {
+        path: '/list/:id',
+        element: <List/>
       }
     ],
   }
