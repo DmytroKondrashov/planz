@@ -79,21 +79,21 @@ function Lists() {
     <div>
       <div className='row justify-content-center align-items-center mt-5'>
         <h1 className="text-center">YOUR LISTS HERE</h1>
-        {!error && lists.length === 0 && 
+        { 
         (<>
             <div className='col-6 col-xl-auto'>
               <form>
                 <div className="mb-3">
-                  <label htmlFor="name" className="form-label">List name</label>
+                  <label htmlFor="name" className="form-label">Create new List</label>
                   <input type="name" className="form-control" id="name" value={name} onChange={handleChange} name='name'/>
                 </div>
                 <div className="text-center">
-                  <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
+                  <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Create</button>
                 </div>
               </form>
             </div>
         </>)}
-        <ul>
+        <ul className='mt-5'>
           {lists.map(list => (
             <li className='text-center' key={list.id}>{list.name}</li>
           ))}
