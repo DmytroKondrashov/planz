@@ -17,19 +17,10 @@ function Header() {
       <Nav className='w-100'>
         <div className="mr-auto d-flex justify-content-between w-100">
           <div className='d-flex flex-row'>
-            <Nav.Link as={Link} to='/lists'>Lists</Nav.Link>
+            {token && <Nav.Link as={Link} to='/lists'>Lists</Nav.Link>}
           </div>
           <div className='d-flex flex-row'>
-            {/* TODO: find the way to handle it using the context, simply token ? () : () will not work */}
-            {/* {token ? (
-              <Nav.Link href="#pricing" onClick={handleLogOut()}>Log Out</Nav.Link>
-            ) : (
-              <>
-                <Nav.Link href="#pricing">Sign In</Nav.Link>
-                <Nav.Link href="/signup">Sign Up</Nav.Link>
-              </>
-            )} */}
-              <Nav.Link href="#pricing" onClick={() => handleLogOut()}>Log Out</Nav.Link>
+              {token && <Nav.Link href="#logout" onClick={() => handleLogOut()}>Log Out</Nav.Link>}
           </div>
         </div>
       </Nav>
