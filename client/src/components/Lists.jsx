@@ -92,7 +92,7 @@ function Lists() {
         </>)}
         <ul className='mt-5'>
           {lists.map(list => (
-            <li className='text-center' key={list._id}><Link to={`/lists/${list._id}`}>{list.name}</Link></li>
+            <li className='text-center' key={list._id}><Link to={`/list/${list._id}`}>{list.name}</Link></li>
           ))}
         </ul>
       </div> 
