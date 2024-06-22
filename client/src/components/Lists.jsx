@@ -35,10 +35,6 @@ function Lists() {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    console.log(lists)
-  })
-
   if (loading) {
     return <div>Loading...</div>;
   }
