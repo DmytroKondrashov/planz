@@ -95,7 +95,7 @@ function Lists() {
         </>)}
         <ul>
           {lists.map(list => (
-            <li key={list.id}>{list.name}</li>
+            <li className='text-center' key={list.id}>{list.name}</li>
           ))}
         </ul>
       </div> 
