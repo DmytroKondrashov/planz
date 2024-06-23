@@ -10,6 +10,9 @@ export class Plan {
 
   @Prop()
   due: Date;
+
+  @Prop()
+  listId: string;
 }
 
 export const PlanSchema = SchemaFactory.createForClass(Plan);
