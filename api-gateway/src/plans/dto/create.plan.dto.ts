@@ -9,4 +9,7 @@ export class CreatePlanDto {
 
   @IsDate()
   due: Date;
+
+  @IsString()
+  planId: string;
 }
