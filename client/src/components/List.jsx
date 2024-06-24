@@ -7,6 +7,7 @@ function List() {
   const [plans, setPlans] = useState([]);
   const [name, setName] = useState('');
   const [text, setText] = useState('');
+  const [errors, setErrors] = useState([]);
 
   const handleNameChange = (e) => {
     const { value } = e.target;
@@ -16,7 +17,35 @@ function List() {
   const handleTextChange = (e) => {
     const { value } = e.target;
     setText(value);
-  } 
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const user = localStorage.getItem('site');
+      const response = await fetch('http://localhost:3001/plans', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': `Bearer ${user}`
+        },
+        body: JSON.stringify({ 
+          name,
+          text,
+          planId: list._id
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok!')
+      }
+      const data = await response.json();
+      setPlans([...plans, data]);
+    } catch (error) {
+      setErrors(...error, error.message);
+    }
+  }
 
   useEffect(() => {
     const user = localStorage.getItem('site');
