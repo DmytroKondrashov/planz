@@ -26,6 +26,19 @@ function List() {
     setSelectedDate(date);
   }
 
+  const fetchPlans = async () => {
+    const user = localStorage.getItem('site');
+    const plansResponse = await fetch(`http://localhost:3001/plans/${list._id}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': `Bearer ${user}`
+      }
+    });
+
+    const plans = await plansResponse.json();
+    setPlans(plans);
+  } 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -48,8 +61,7 @@ function List() {
       if (!response.ok) {
         throw new Error('Network response was not ok!')
       }
-      const data = await response.json();
-      setPlans([...plans, data]);
+      await fetchPlans();
     } catch (error) {
       setErrors(...error, error.message);
     }
@@ -69,17 +81,7 @@ function List() {
       const list = await listResponse.json();
       setList(list);
 
-
-      const plansResponse = await fetch(`http://localhost:3001/plans/${list._id}`, {
-        headers: {
-          'Content-Type': 'application/json',
-          'authorization': `Bearer ${user}`
-        }
-      });
-
-      const plans = await plansResponse.json();
-      console.log(plans)
-      setPlans(plans);
+      await fetchPlans();
     }
 
     fetchData();
