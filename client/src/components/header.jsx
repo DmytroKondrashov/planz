@@ -12,7 +12,7 @@ function Header() {
   };
 
   return (
-    <Navbar bg="dark" variant="dark" className='w-100'>
+    <Navbar bg="dark" variant="dark" className='w-100 pe-3 ps-3'>
       <Navbar.Brand href="/">PLANZ</Navbar.Brand>
       <Nav className='w-100'>
         <div className="mr-auto d-flex justify-content-between w-100">
