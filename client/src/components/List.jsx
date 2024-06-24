@@ -27,6 +27,7 @@ function List() {
   }
 
   const fetchPlans = async () => {
+    console.log(list)
     const user = localStorage.getItem('site');
     const plansResponse = await fetch(`http://localhost:3001/plans/${list._id}`, {
       headers: {
@@ -80,12 +81,16 @@ function List() {
 
       const list = await listResponse.json();
       setList(list);
-
-      await fetchPlans();
     }
 
     fetchData();
   }, [id])
+
+  useEffect(() => {
+    if (list) {
+      fetchPlans();
+    }
+  }, [list]);
 
   return(
     <>
