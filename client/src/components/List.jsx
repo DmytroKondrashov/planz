@@ -5,6 +5,18 @@ function List() {
   const {id} = useParams();
   const [list, setList] = useState(null);
   const [plans, setPlans] = useState([]);
+  const [name, setName] = useState('');
+  const [text, setText] = useState('');
+
+  const handleNameChange = (e) => {
+    const { value } = e.target;
+    setName(value);
+  }
+
+  const handleTextChange = (e) => {
+    const { value } = e.target;
+    setText(value);
+  } 
 
   useEffect(() => {
     const user = localStorage.getItem('site');
