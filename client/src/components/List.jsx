@@ -4,20 +4,32 @@ import { useParams } from "react-router-dom";
 function List() {
   const {id} = useParams();
   const [list, setList] = useState(null);
+  const [plans, setPlans] = useState([]);
 
   useEffect(() => {
+    const user = localStorage.getItem('site');
+
     const fetchData = async() => {
-      const user = localStorage.getItem('site');
-      const response = await fetch(`http://localhost:3001/lists/${id}`, {
+      const listResponse = await fetch(`http://localhost:3001/lists/${id}`, {
         headers: {
           'Content-Type': 'application/json',
           'authorization': `Bearer ${user}`
         }
       })
 
-      const data = await response.json();
-      console.log(data)
-      setList(data);
+      const list = await listResponse.json();
+      setList(list);
+
+
+      const plansResponse = await fetch(`http://localhost:3001/plans/${list._id}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': `Bearer: ${user}`
+        }
+      });
+
+      const plans = await plansResponse.json();
+      setPlans(plans);
     }
 
     fetchData();
