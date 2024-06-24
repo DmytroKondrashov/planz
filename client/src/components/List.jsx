@@ -88,15 +88,15 @@ function List() {
   return(
     <>
       <h1 className="text-center">This is list</h1>
-      (<>
-          <div className='col-6 col-xl-auto'>
+      <>
+          <div className='col-xl-auto d-flex justify-content-center'>
             <form>
               <div className="mb-3">
-                <label htmlFor="name" className="form-label">Create new Plan</label>
+                <label htmlFor="name" className="form-label">Plan Name</label>
                 <input type="name" className="form-control" id="name" value={name} onChange={handleNameChange} name='name'/>
               </div>
               <div className="mb-3">
-                <label htmlFor="name" className="form-label">Create new Plan</label>
+                <label htmlFor="name" className="form-label">Plan Text</label>
                 <input type="text" className="form-control" id="text" value={text} onChange={handleTextChange} name='text'/>
               </div>
               <div className="mb-3">
@@ -109,11 +109,11 @@ function List() {
                 />
               </div>
               <div className="text-center">
-                <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Create</button>
+                <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Create Plan</button>
               </div>
             </form>
           </div>
-      </>)
+      </>
       {/* TODO: in thois table there should be a list of plans */}
       <table className="table mt-5 ps-5 pe-5">
         <thead>
