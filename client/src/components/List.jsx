@@ -27,7 +27,7 @@ function List() {
     <>
       <h1 className="text-center">This is list</h1>
       {/* TODO: in thois table there should be a list of plans */}
-      <table class="table mt-5">
+      <table className="table mt-5 ps-5 pe-5">
         <thead>
           <tr>
             <th scope="col">#</th>
