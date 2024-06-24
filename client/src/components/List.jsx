@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 function List() {
   const {id} = useParams();
@@ -8,6 +10,7 @@ function List() {
   const [name, setName] = useState('');
   const [text, setText] = useState('');
   const [errors, setErrors] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(null);
 
   const handleNameChange = (e) => {
     const { value } = e.target;
@@ -17,6 +20,10 @@ function List() {
   const handleTextChange = (e) => {
     const { value } = e.target;
     setText(value);
+  }
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
   }
 
   const handleSubmit = async (e) => {
@@ -33,6 +40,7 @@ function List() {
         body: JSON.stringify({ 
           name,
           text,
+          due: selectedDate,
           planId: list._id
         })
       });
@@ -90,6 +98,15 @@ function List() {
               <div className="mb-3">
                 <label htmlFor="name" className="form-label">Create new Plan</label>
                 <input type="text" className="form-control" id="text" value={text} onChange={handleTextChange} name='text'/>
+              </div>
+              <div className="mb-3">
+                <DatePicker
+                  selected={selectedDate}
+                  onChange={handleDateChange}
+                  showTimeSelect
+                  dateFormat="Pp"
+                  placeholderText="Select a date and time"
+                />
               </div>
               <div className="text-center">
                 <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Create</button>
