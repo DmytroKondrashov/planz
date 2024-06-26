@@ -10,17 +10,18 @@ export class PlansService {
     @InjectModel(Plan.name) private readonly planModel: Model<Plan>,
   ) {}
 
-  getPlansByLists(id: string) {
+  async getPlansByLists(id: string) {
+    console.log(await this.planModel.find().exec())
     return this.planModel.find({ listId: id }).exec();
   }
 
   createPlan(body: CreatePlanDto): Promise<Plan> {
-    const { name, text, due, planId } = body;
+    const { name, text, due, listId } = body;
     return this.planModel.create({
       name,
       text,
       due,
-      planId,
+      listId,
     });
   }
 }
