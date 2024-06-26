@@ -11,7 +11,6 @@ export class PlansService {
   ) {}
 
   async getPlansByLists(id: string) {
-    console.log(await this.planModel.find().exec())
     return this.planModel.find({ listId: id }).exec();
   }
 
