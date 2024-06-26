@@ -27,7 +27,6 @@ function List() {
   }
 
   const fetchPlans = async () => {
-    console.log(list)
     const user = localStorage.getItem('site');
     const plansResponse = await fetch(`http://localhost:3001/plans/${list._id}`, {
       headers: {
@@ -37,6 +36,7 @@ function List() {
     });
 
     const plans = await plansResponse.json();
+    console.log(plans)
     setPlans(plans);
   } 
 
@@ -45,6 +45,8 @@ function List() {
 
     try {
       const user = localStorage.getItem('site');
+      console.log("++++++++++++++++++++++++++")
+      console.log(list)
       const response = await fetch('http://localhost:3001/plans', {
         method: 'POST',
         headers: {
@@ -55,7 +57,7 @@ function List() {
           name,
           text,
           due: selectedDate,
-          planId: list._id
+          listId: list._id
         })
       });
 
