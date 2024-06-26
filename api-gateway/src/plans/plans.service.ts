@@ -15,13 +15,14 @@ export class PlansService {
     return this.planModel.find({ listId: id }).exec();
   }
 
-  createPlan(body: CreatePlanDto): Promise<Plan> {
+  async createPlan(body: CreatePlanDto): Promise<Plan> {
     const { name, text, due, listId } = body;
-    return this.planModel.create({
+    const res = await this.planModel.create({
       name,
       text,
       due,
       listId,
     });
+    return res;
   }
 }
