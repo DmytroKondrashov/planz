@@ -11,5 +11,5 @@ export class CreatePlanDto {
   due: Date;
 
   @IsString()
-  planId: string;
+  listId: string;
 }
