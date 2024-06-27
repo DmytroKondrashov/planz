@@ -1,4 +1,12 @@
-import { Controller, UseGuards, Get, Param, Post, Body } from '@nestjs/common';
+import {
+  Controller,
+  UseGuards,
+  Get,
+  Param,
+  Post,
+  Body,
+  Delete,
+} from '@nestjs/common';
 import { AuthGuard } from 'src/common/guards/auth.guard';
 import { PlansService } from './plans.service';
 import { CreatePlanDto } from './dto/create.plan.dto';
@@ -17,5 +25,11 @@ export class PlansController {
   @UseGuards(AuthGuard)
   createPlan(@Body() body: CreatePlanDto) {
     return this.plansService.createPlan(body);
+  }
+
+  @Delete()
+  @UseGuards(AuthGuard)
+  deletePlan(@Param('id') id: string) {
+    return this.plansService.deletePlan(id);
   }
 }
