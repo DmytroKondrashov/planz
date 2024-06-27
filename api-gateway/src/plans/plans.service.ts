@@ -24,4 +24,13 @@ export class PlansService {
     });
     return res;
   }
+
+  async deletePlan(id: string) {
+    try {
+      await this.planModel.deleteOne({ _id: id });
+      return 'Plan deleted';
+    } catch (error) {
+      return 'Failed to delete Plan';
+    }
+  }
 }
