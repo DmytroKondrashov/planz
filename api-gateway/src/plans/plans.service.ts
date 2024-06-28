@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Plan } from './schemas/plan.schema';
 import { Model } from 'mongoose';
 import { CreatePlanDto } from './dto/create.plan.dto';
-
+import { ObjectId } from 'mongodb';
 @Injectable()
 export class PlansService {
   constructor(
@@ -27,7 +27,8 @@ export class PlansService {
 
   async deletePlan(id: string) {
     try {
-      await this.planModel.deleteOne({ _id: id });
+      const objectId = new ObjectId(id);
+      await this.planModel.deleteOne({ _id: objectId });
       return 'Plan deleted';
     } catch (error) {
       return 'Failed to delete Plan';

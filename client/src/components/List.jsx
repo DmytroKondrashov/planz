@@ -26,6 +26,18 @@ function List() {
     setSelectedDate(date);
   }
 
+  const handleDelete = async(id) => {
+    const user = localStorage.getItem('site');
+    await fetch(`http://localhost:3001/plans/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': `Bearer ${user}`
+      }
+    })
+    fetchPlans();
+  }
+
   const fetchPlans = async () => {
     const user = localStorage.getItem('site');
     const plansResponse = await fetch(`http://localhost:3001/plans/${list._id}`, {
@@ -138,7 +150,7 @@ function List() {
                   <td>{plan.name}</td>
                   <td>{plan.text}</td>
                   <td>{plan.due}</td>
-                  <td><a className="text-danger text-decoration-none" href="#">X</a></td>
+                  <td><a className="text-danger text-decoration-none" href="#" onClick={() => handleDelete(plan._id)}>X</a></td>
                 </tr>)
               })}
             </tbody>
