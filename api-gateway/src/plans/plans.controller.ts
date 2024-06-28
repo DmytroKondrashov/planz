@@ -27,7 +27,7 @@ export class PlansController {
     return this.plansService.createPlan(body);
   }
 
-  @Delete()
+  @Delete(':id')
   @UseGuards(AuthGuard)
   deletePlan(@Param('id') id: string) {
     return this.plansService.deletePlan(id);
