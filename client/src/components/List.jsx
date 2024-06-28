@@ -120,26 +120,31 @@ function List() {
             </form>
           </div>
       </>
-      <table className="table mt-5 ps-5 pe-5">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Text</th>
-            <th scope="col">Due</th>
-          </tr>
-        </thead>
-        <tbody>
-          {plans.map((plan, index) => {
-            return (<tr key={plan._id}>
-              <th scope="row">{index + 1}</th>
-              <td>{plan.name}</td>
-              <td>{plan.text}</td>
-              <td>{plan.due}</td>
-            </tr>)
-          })}
-        </tbody>
-    </table>
+      {plans.length ? <>
+        <div className=" mt-5 ps-5 pe-5">
+          <table className="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Text</th>
+                <th scope="col">Due</th>
+              </tr>
+            </thead>
+            <tbody>
+              {plans.map((plan, index) => {
+                return (<tr key={plan._id}>
+                  <th scope="row">{index + 1}</th>
+                  <td>{plan.name}</td>
+                  <td>{plan.text}</td>
+                  <td>{plan.due}</td>
+                  <td><a className="text-danger text-decoration-none" href="#">X</a></td>
+                </tr>)
+              })}
+            </tbody>
+          </table>
+        </div>
+      </> : <><h3 className="mt-5 text-center">There are no plans here yet. Maybe create one?</h3></>}
     </>
   )
 }
