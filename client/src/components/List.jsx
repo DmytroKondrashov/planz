@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import EditPlan from "./EditPlan";
 import 'react-datepicker/dist/react-datepicker.css';
+import '../styles/list.css'
 
 function List() {
   const {id} = useParams();
@@ -74,6 +75,8 @@ function List() {
                 <th scope="col">Name</th>
                 <th scope="col">Text</th>
                 <th scope="col">Due</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
@@ -83,6 +86,9 @@ function List() {
                   <td>{plan.name}</td>
                   <td>{plan.text}</td>
                   <td>{plan.due}</td>
+                  <td>
+                    <img src={`${process.env.PUBLIC_URL}/764599.png`} alt="Icon" className="icon"/>
+                  </td>
                   <td><a className="text-danger text-decoration-none" href="#" onClick={() => handleDelete(plan._id)}>X</a></td>
                 </tr>)
               })}
