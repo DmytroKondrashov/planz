@@ -1,5 +1,6 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
+import EditPlan from '../components/EditPlan'
 import Layout from "../components/Layout";
 import Landing from "../components/Landing";
 import Lists from "../components/Lists";
@@ -26,6 +27,10 @@ export const routes = createBrowserRouter([
       {
         path: '/list/:id',
         element: <List/>
+      },
+      {
+        path: '/plan/:id',
+        element: <EditPlan/>
       }
     ],
   }

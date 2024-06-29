@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import EditPlan from "./EditPlan";
 import 'react-datepicker/dist/react-datepicker.css';
 import '../styles/list.css'
@@ -87,7 +87,9 @@ function List() {
                   <td>{plan.text}</td>
                   <td>{plan.due}</td>
                   <td>
-                    <img src={`${process.env.PUBLIC_URL}/764599.png`} alt="Icon" className="icon"/>
+                    <Link to={`/plan/${plan._id}`}>
+                      <img src={`${process.env.PUBLIC_URL}/764599.png`} alt="Icon" className="icon"/>
+                    </Link>
                   </td>
                   <td><a className="text-danger text-decoration-none" href="#" onClick={() => handleDelete(plan._id)}>X</a></td>
                 </tr>)
