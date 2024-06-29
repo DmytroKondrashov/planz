@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 
-function EditPlan({list, setPlans}) {
+function CreatePlan({list, setPlans}) {
   const [name, setName] = useState('');
   const [text, setText] = useState('');
   const [selectedDate, setSelectedDate] = useState(null);
@@ -87,4 +87,4 @@ function EditPlan({list, setPlans}) {
   )
 }
 
-export default EditPlan;
+export default CreatePlan;

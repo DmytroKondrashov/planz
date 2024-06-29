@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import EditPlan from "./EditPlan";
+import EditPlan from "./CreatePlan";
 import 'react-datepicker/dist/react-datepicker.css';
 import '../styles/list.css'
 
