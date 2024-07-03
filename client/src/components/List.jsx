@@ -87,7 +87,7 @@ function List() {
                   <td>{plan.text}</td>
                   <td>{plan.due}</td>
                   <td>
-                    <Link to={`/plan/${plan._id}`}>
+                    <Link to={{pathname: `/plan/${plan._id}`, state: {plan}}}>
                       <img src={`${process.env.PUBLIC_URL}/764599.png`} alt="Icon" className="icon"/>
                     </Link>
                   </td>
