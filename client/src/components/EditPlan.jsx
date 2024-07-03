@@ -2,6 +2,7 @@ import { useState } from "react";
 import DatePicker from 'react-datepicker';
 
 function EditPlan(plan) {
+  console.log(plan)
   const [name, setName] = useState('');
   const [text, setText] = useState('');
   const [selectedDate, setSelectedDate] = useState(null);
@@ -32,7 +33,7 @@ function EditPlan(plan) {
         />
       </div>
       <div className="text-center">
-        <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Create Plan</button>
+        <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Edit Plan</button>
       </div>
     </form>
   )
