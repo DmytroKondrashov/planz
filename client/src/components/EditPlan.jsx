@@ -1,7 +1,7 @@
 import { useState } from "react";
 import DatePicker from 'react-datepicker';
 
-function EditPlan() {
+function EditPlan(plan) {
   const [name, setName] = useState('');
   const [text, setText] = useState('');
   const [selectedDate, setSelectedDate] = useState(null);
@@ -9,6 +9,8 @@ function EditPlan() {
   const handleDateChange = (date) => {
     setSelectedDate(date);
   }
+
+  const handleSubmit = () => {}
 
   return(
     <form>
@@ -28,6 +30,9 @@ function EditPlan() {
           dateFormat="Pp"
           placeholderText="Select a date and time"
         />
+      </div>
+      <div className="text-center">
+        <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Create Plan</button>
       </div>
     </form>
   )
