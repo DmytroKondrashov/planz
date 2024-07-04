@@ -10,6 +10,7 @@ import {
 import { AuthGuard } from 'src/common/guards/auth.guard';
 import { PlansService } from './plans.service';
 import { CreatePlanDto } from './dto/create.plan.dto';
+import { EditPlanDto } from './dto/edit.plan.dto';
 
 @Controller('plans')
 export class PlansController {
@@ -25,6 +26,12 @@ export class PlansController {
   @UseGuards(AuthGuard)
   createPlan(@Body() body: CreatePlanDto) {
     return this.plansService.createPlan(body);
+  }
+
+  @Post(':id')
+  @UseGuards(AuthGuard)
+  editPlan(@Body() body: EditPlanDto) {
+    return this.plansService.editPlan(body);
   }
 
   @Delete(':id')
