@@ -5,11 +5,11 @@ import 'react-datepicker/dist/react-datepicker.css';
 import '../styles/list.css'
 
 function List() {
-  const {id} = useParams();
+  const { id } = useParams();
   const [list, setList] = useState(null);
   const [plans, setPlans] = useState([]);
 
-  const handleDelete = async(id) => {
+  const handleDelete = async (id) => {
     const user = localStorage.getItem('site');
     await fetch(`http://localhost:3001/plans/${id}`, {
       method: 'DELETE',
@@ -17,9 +17,9 @@ function List() {
         'Content-Type': 'application/json',
         'authorization': `Bearer ${user}`
       }
-    })
+    });
     fetchPlans();
-  }
+  };
 
   const fetchPlans = async () => {
     const user = localStorage.getItem('site');
@@ -32,25 +32,25 @@ function List() {
 
     const plans = await plansResponse.json();
     setPlans(plans);
-  } 
+  };
 
   useEffect(() => {
     const user = localStorage.getItem('site');
 
-    const fetchData = async() => {
+    const fetchData = async () => {
       const listResponse = await fetch(`http://localhost:3001/lists/${id}`, {
         headers: {
           'Content-Type': 'application/json',
           'authorization': `Bearer ${user}`
         }
-      })
+      });
 
       const list = await listResponse.json();
       setList(list);
-    }
+    };
 
     fetchData();
-  }, [id])
+  }, [id]);
 
   useEffect(() => {
     if (list) {
@@ -58,16 +58,16 @@ function List() {
     }
   }, [list]);
 
-  return(
+  return (
     <>
       <h1 className="text-center">This is list</h1>
       <>
-          <div className='col-xl-auto d-flex justify-content-center'>
-            <EditPlan list={list} setPlans={setPlans}/>
-          </div>
+        <div className='col-xl-auto d-flex justify-content-center'>
+          <EditPlan list={list} setPlans={setPlans} />
+        </div>
       </>
-      {plans.length ? <>
-        <div className=" mt-5 ps-5 pe-5">
+      {plans.length ? (
+        <div className="mt-5 ps-5 pe-5">
           <table className="table">
             <thead>
               <tr>
@@ -80,26 +80,28 @@ function List() {
               </tr>
             </thead>
             <tbody>
-              {plans.map((plan, index) => {
-                return (<tr key={plan._id}>
+              {plans.map((plan, index) => (
+                <tr key={plan._id}>
                   <th scope="row">{index + 1}</th>
                   <td>{plan.name}</td>
                   <td>{plan.text}</td>
                   <td>{plan.due}</td>
                   <td>
-                    <Link to={{pathname: `/plan/${plan._id}`, state: {plan}}}>
-                      <img src={`${process.env.PUBLIC_URL}/764599.png`} alt="Icon" className="icon"/>
+                    <Link to={`/plan/${plan._id}`} state={{ plan }}>
+                      <img src={`${process.env.PUBLIC_URL}/764599.png`} alt="Icon" className="icon" />
                     </Link>
                   </td>
                   <td><a className="text-danger text-decoration-none" href="#" onClick={() => handleDelete(plan._id)}>X</a></td>
-                </tr>)
-              })}
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
-      </> : <><h3 className="mt-5 text-center">There are no plans here yet. Maybe create one?</h3></>}
+      ) : (
+        <><h3 className="mt-5 text-center">There are no plans here yet. Maybe create one?</h3></>
+      )}
     </>
-  )
+  );
 }
 
 export default List;
