@@ -4,6 +4,7 @@ import { Plan } from './schemas/plan.schema';
 import { Model } from 'mongoose';
 import { CreatePlanDto } from './dto/create.plan.dto';
 import { ObjectId } from 'mongodb';
+import { EditPlanDto } from './dto/edit.plan.dto';
 @Injectable()
 export class PlansService {
   constructor(
@@ -32,6 +33,18 @@ export class PlansService {
       return 'Plan deleted';
     } catch (error) {
       return 'Failed to delete Plan';
+    }
+  }
+
+  async editPlan(plan: EditPlanDto) {
+    try {
+      await this.planModel.updateOne(
+        { _id: new ObjectId(plan._id) },
+        { $set: plan },
+      );
+      return 'Plan updated';
+    } catch (error) {
+      return 'Failed to update Plan';
     }
   }
 }
