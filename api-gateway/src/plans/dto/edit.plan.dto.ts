@@ -2,6 +2,9 @@ import { IsDate, IsOptional, IsString } from 'class-validator';
 
 export class EditPlanDto {
   @IsString()
+  _id: string;
+
+  @IsString()
   @IsOptional()
   name?: string;
 
