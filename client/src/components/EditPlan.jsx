@@ -10,6 +10,10 @@ function EditPlan() {
   const [text, setText] = useState(plan?.text || '');
   const [selectedDate, setSelectedDate] = useState(plan?.due ? new Date(plan.due) : null);
 
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  }
+
   const handleSubmit = async(e) => {
     e.preventDefault();
     try {
@@ -60,7 +64,7 @@ function EditPlan() {
       <div className="mb-3">
         <DatePicker
           selected={selectedDate}
-          onChange={(e) => setSelectedDate(e.target.value)}
+          onChange={handleDateChange}
           showTimeSelect
           dateFormat="Pp"
           placeholderText="Select a date and time"
