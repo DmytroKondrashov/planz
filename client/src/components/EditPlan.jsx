@@ -10,6 +10,7 @@ function EditPlan() {
   const [text, setText] = useState(plan?.text || '');
   const [selectedDate, setSelectedDate] = useState(plan?.due ? new Date(plan.due) : null);
 
+  // TODO: fix bug with the date being saved one day earlyer!
   const handleDateChange = (date) => {
     setSelectedDate(date);
   }
